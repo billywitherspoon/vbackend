@@ -1,8 +1,9 @@
-class NoteController < ApplicationController
+class Api::V1::NoteController < ApplicationController
       before_action :set_note, only: [:edit, :update, :show]
       
       def index 
          @notes = Note.all
+         render json: @notes
       end 
    
       def new 
@@ -13,6 +14,7 @@ class NoteController < ApplicationController
       end 
    
       def show 
+         render json: @note
       end 
    
       def update 

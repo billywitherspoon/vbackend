@@ -1,8 +1,9 @@
-class LogController < ApplicationController
+class Api::V1::LogController < ApplicationController
       before_action :set_log, only: [:edit, :update, :show]
       
       def index 
          @logs = Log.all
+         render json: @logs
       end 
    
       def new 
@@ -13,6 +14,7 @@ class LogController < ApplicationController
       end 
    
       def show 
+         render json: @log
       end 
    
       def update 
