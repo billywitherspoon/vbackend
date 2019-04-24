@@ -1,0 +1,55 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  vin: MyString
+  plate: MyString
+  year: MyString
+  make: MyString
+  model: MyString
+  trim: MyString
+  engine_displacement: MyString
+  engine_configuration: MyString
+  engine_model: MyString
+  drive: MyString
+  number_of_cylinders: MyString
+  fuel_type: MyString
+  manufacturer: MyString
+  plant_city: MyString
+  plant_country: MyString
+  horsePower: MyString
+  tpms: false
+  battery_energy: MyString
+  ev_drive_unit: MyString
+  name: MyString
+  color: MyString
+  auto_image: MyString
+  user_image: MyString
+  tire_size: MyString
+  wheel_size: MyString
+
+two:
+  vin: MyString
+  plate: MyString
+  year: MyString
+  make: MyString
+  model: MyString
+  trim: MyString
+  engine_displacement: MyString
+  engine_configuration: MyString
+  engine_model: MyString
+  drive: MyString
+  number_of_cylinders: MyString
+  fuel_type: MyString
+  manufacturer: MyString
+  plant_city: MyString
+  plant_country: MyString
+  horsePower: MyString
+  tpms: false
+  battery_energy: MyString
+  ev_drive_unit: MyString
+  name: MyString
+  color: MyString
+  auto_image: MyString
+  user_image: MyString
+  tire_size: MyString
+  wheel_size: MyString
