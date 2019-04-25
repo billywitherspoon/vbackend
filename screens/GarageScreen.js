@@ -1,19 +1,21 @@
 import React from 'react';
-import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { WebBrowser } from 'expo';
-
-import { MonoText } from '../components/StyledText';
+import { StyleSheet, Text, View } from 'react-native';
+import VehicleSummary from '../components/presentational/VehicleSummary';
+// import { Icon } from 'expo';
+// import { MonoText } from '../components/StyledText';
 
 export default class GarageScreen extends React.Component {
 	static navigationOptions = {
 		header: null
 	};
 
+	componentDidMount = () => {};
+
 	render() {
 		return (
 			<View style={styles.container}>
 				<View style={styles.contentContainer}>
-					<Text>hellllllo</Text>
+					<VehicleSummary />
 				</View>
 			</View>
 		);
