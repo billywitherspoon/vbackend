@@ -6,11 +6,14 @@ class Api::V1::VehicleController < ApplicationController
       render json: @vehicles
    end 
 
-   def new 
-      @vehicle = Vehicle.new 
-   end 
+   # def new 
+   #    @vehicle = Vehicle.new 
+   # end 
 
    def create 
+      vin = vehicle_params[:vin]
+      @vehicle = Vehicle.new(vehicle_params)
+      puts @vehicle.errors
    end 
 
    def show 

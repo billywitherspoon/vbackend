@@ -19,6 +19,8 @@ gem 'puma', '~> 3.11'
 #give ability to rename rails project
 gem 'rename'
 
+#for making fetch calls
+gem 'rest-client'
 
 gem 'active_model_serializers'
 # use serializers to get full api data on front end
