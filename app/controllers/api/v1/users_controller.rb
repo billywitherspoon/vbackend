@@ -1,4 +1,4 @@
-class Api::V1::UserController < ApplicationController
+class Api::V1::UsersController < ApplicationController
    before_action :set_user, only: [:edit, :update, :show]
    
    def index 
@@ -14,7 +14,7 @@ class Api::V1::UserController < ApplicationController
    end 
 
    def show 
-      render json: @user
+      render json: @user, include: "vehicles.*"
    end 
 
    def update 

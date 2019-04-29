@@ -1,4 +1,4 @@
-class Api::V1::NoteController < ApplicationController
+class Api::V1::NotesController < ApplicationController
       before_action :set_note, only: [:edit, :update, :show]
       
       def index 

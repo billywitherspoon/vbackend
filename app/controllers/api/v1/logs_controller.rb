@@ -1,4 +1,4 @@
-class Api::V1::LogController < ApplicationController
+class Api::V1::LogsController < ApplicationController
       before_action :set_log, only: [:edit, :update, :show]
       
       def index 

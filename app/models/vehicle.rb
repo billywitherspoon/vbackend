@@ -3,20 +3,25 @@ class Vehicle < ApplicationRecord
    has_many :logs
    belongs_to :user
 
-   def add_nhtsa_data(vin)
+   # validates :vin, uniqueness: true
+
+   def add_nhtsa_data(vehicle_params)
+      vin = vehicle_params[:vin]
+      user_id = vehicle_params[:user_id]
+      self.vin = vin
+      self.user_id = 1
       data = NHTSA.data(vin)["Results"]
-      #error codes aren't great, so simply saying if a model is returned, it must have found a matching vehicle
-      if data["Variable"]["Make"]
-         data.each do |d| 
-            d_snaked = d["Variable"].downcase.gsub(/ /,"_").gsub(/\(|\)/,"")
-            if self.attributes.keys.include?(d_snaked)
-               self[d_snaked] = d["Value"]
-            end
+      data.each do |d| 
+         d_snaked = d["Variable"].downcase.gsub(/ /,"_").gsub(/\(|\)/,"")
+         if self.attributes.keys.include?(d_snaked)
+            self[d_snaked] = d["Value"]
          end
-         self.user_id = 1
+      end
+      #error codes from this API aren't great, so simply saying if a model is returned, it must have found a matching make
+      if self.make
          self.save
-      else 
-         self.errors << "No vehicle found matching vin"
+      else
+        return "NO MATCH"
       end
    end
 end
