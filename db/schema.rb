@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_30_000902) do
+ActiveRecord::Schema.define(version: 2019_04_24_212328) do
 
   create_table "logs", force: :cascade do |t|
     t.integer "mileage"
@@ -53,13 +53,14 @@ ActiveRecord::Schema.define(version: 2019_04_30_000902) do
     t.string "model"
     t.string "trim"
     t.string "displacement_l"
+    t.string "displacement_ci"
     t.string "engine_configuration"
     t.string "engine_model"
-    t.string "drive"
+    t.string "drive_type"
     t.string "engine_number_of_cylinders"
-    t.string "fuel_type"
     t.string "manufacturer_name"
     t.string "plant_city"
+    t.string "plant_state"
     t.string "plant_country"
     t.string "engine_brake_hp"
     t.string "tpms"
@@ -71,20 +72,22 @@ ActiveRecord::Schema.define(version: 2019_04_30_000902) do
     t.string "tire_size_rear"
     t.string "wheel_size_front_inches"
     t.string "wheel_size_rear_inches"
-    t.integer "user_id"
     t.string "series"
     t.string "body_class"
     t.string "trim2"
     t.string "doors"
-    t.string "gross_vehicle_weight_rating"
     t.string "engine_manufacturer"
     t.string "turbo"
     t.string "brake_system_type"
     t.string "top_speed_mph"
+    t.string "valve_train_design"
+    t.string "fuel_type_primary"
+    t.string "transmission_style"
+    t.string "transmission_speeds"
+    t.integer "mileage"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "plant_state"
-    t.integer "mileage"
   end
 
 end

@@ -12,7 +12,7 @@ class Vehicle < ApplicationRecord
       self.user_id = 1
       data = NHTSA.data(vin)["Results"]
       data.each do |d| 
-         d_snaked = d["Variable"].downcase.gsub(/ /,"_").gsub(/\(|\)/,"")
+         d_snaked = d["Variable"].downcase.gsub(/ - /,"_").gsub(/ /,"_").gsub(/[\(\)-]/,"")
          if self.attributes.keys.include?(d_snaked)
             self[d_snaked] = d["Value"]
          end
