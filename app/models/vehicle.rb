@@ -24,4 +24,14 @@ class Vehicle < ApplicationRecord
         return "NO MATCH"
       end
    end
+
+   def add_maint_data
+      maint_data = CARMD.maint(self.vin, self.mileage)
+      maint_data["data"].each do |d|
+         log = Log.new(title: d["desc"], mileage: d["due_mileage"])
+         log.vehicle = self 
+         log.save
+      end
+   end
+
 end

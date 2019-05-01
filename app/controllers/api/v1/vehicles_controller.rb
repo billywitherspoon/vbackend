@@ -30,6 +30,10 @@ class Api::V1::VehiclesController < ApplicationController
    end 
 
    def update 
+      @vehicle.mileage = vehicle_params[:mileage]
+      @vehice.save
+      @vehicle.add_maint_data
+      render json: @vehicle
    end 
 
    def edit 
@@ -42,7 +46,7 @@ class Api::V1::VehiclesController < ApplicationController
    end
 
    def vehicle_params 
-      params.require(:vehicle).permit(:vin, :plate, :year, :make, :model, :trim, :engine_displacement, :engine_configuration, :engine_model, :drive, :number_of_cylinders, :fuel_type, :manufacturer, :plant_city, :plant_state, :plant_country, :horsePower, :tpms, :battery_energy, :ev_drive_unit, :name, :color, :auto_image, :user_image, :tire_size, :wheel_size, :user_id)
+      params.require(:vehicle).permit(:vin, :plate, :year, :make, :model, :trim, :engine_displacement, :engine_configuration, :engine_model, :drive, :number_of_cylinders, :fuel_type, :manufacturer, :plant_city, :plant_state, :plant_country, :horsePower, :tpms, :battery_energy, :ev_drive_unit, :name, :color, :auto_image, :user_image, :tire_size, :wheel_size, :user_id, :mileage)
    end
 end
 

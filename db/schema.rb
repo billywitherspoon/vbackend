@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_27_203824) do
+ActiveRecord::Schema.define(version: 2019_04_30_000902) do
 
   create_table "logs", force: :cascade do |t|
     t.integer "mileage"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 2019_04_27_203824) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "plant_state"
+    t.integer "mileage"
   end
 
 end
