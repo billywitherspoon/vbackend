@@ -31,13 +31,12 @@ class Api::V1::VehiclesController < ApplicationController
 
    def update 
       @vehicle.mileage = vehicle_params[:mileage]
-      @vehice.save
       @vehicle.add_maint_data
       render json: @vehicle
    end 
 
-   def edit 
-   end 
+   # def edit 
+   # end 
 
    private 
 
