@@ -21,6 +21,8 @@ gem 'rename'
 
 #for making fetch calls
 gem 'rest-client'
+gem 'xml-to-json'
+gem 'nokogiri'
 
 gem 'active_model_serializers'
 # use serializers to get full api data on front end

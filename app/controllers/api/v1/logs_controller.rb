@@ -1,5 +1,5 @@
 class Api::V1::LogsController < ApplicationController
-      before_action :set_log, only: [:edit, :update, :show]
+      before_action :set_log, only: [:update, :show, :destroy]
       
       def index 
          @logs = Log.all
@@ -23,10 +23,21 @@ class Api::V1::LogsController < ApplicationController
       end 
    
       def update 
+         @log.update(log_params)
+         render json: @log.vehicle
       end 
+
+      def destroy
+         @log.delete
+         if @log
+            render json: "Log NOT deleted from database"
+         else 
+            render json: "Log successfully deleted from database"
+         end
+      end
    
-      def edit 
-      end 
+      # def edit 
+      # end 
    
       private 
    

@@ -5,12 +5,8 @@ class Vehicle < ApplicationRecord
 
    # validates :vin, uniqueness: true
 
-   def add_nhtsa_data(vehicle_params)
-      vin = vehicle_params[:vin]
-      user_id = vehicle_params[:user_id]
-      self.vin = vin
-      self.user_id = 1
-      data = NHTSA.data(vin)["Results"]
+   def add_nhtsa_data
+      data = NHTSA.data(self.vin)["Results"]
       data.each do |d| 
          d_snaked = d["Variable"].downcase.gsub(/ - /,"_").gsub(/ /,"_").gsub(/[\(\)-]/,"")
          if self.attributes.keys.include?(d_snaked)
@@ -28,10 +24,21 @@ class Vehicle < ApplicationRecord
    def add_maint_data
       maint_data = CARMD.maint(self.vin, self.mileage)
       maint_data["data"].each do |d|
-         log = Log.new(title: d["desc"], mileage: d["due_mileage"])
-         log.vehicle = self 
-         log.save
+         unless Log.find_by(title: d["desc"], mileage: d["due_mileage"])
+            log = Log.new(title: d["desc"], mileage: d["due_mileage"])
+            log.vehicle = self 
+            log.save
+         end
       end
+      self.save
    end
 
+   def get_vin_by_plate
+       vin = VehicleRegistration.get_vin(self.plate, self.plate_state)
+       if vin && vin.class == String && vin.length > 8 && vin.length < 20
+         self.vin = vin
+       else  
+         return "NO MATCH"
+       end 
+   end
 end

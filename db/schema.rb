@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_24_212328) do
+ActiveRecord::Schema.define(version: 2019_05_07_014156) do
 
   create_table "logs", force: :cascade do |t|
     t.integer "mileage"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 2019_04_24_212328) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "plate_state"
   end
 
 end
