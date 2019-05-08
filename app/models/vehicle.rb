@@ -25,7 +25,11 @@ class Vehicle < ApplicationRecord
       maint_data = CARMD.maint(self.vin, self.mileage)
       maint_data["data"].each do |d|
          unless Log.find_by(title: d["desc"], mileage: d["due_mileage"])
-            log = Log.new(title: d["desc"], mileage: d["due_mileage"])
+            if d["repair"]["repair_difficulty"]
+               log = Log.new(title: d["desc"], mileage: d["due_mileage"], difficulty: d["repair"]["repair_difficulty"])
+            else 
+               log = Log.new(title: d["desc"], mileage: d["due_mileage"])
+            end
             log.vehicle = self 
             log.save
          end
