@@ -18,13 +18,14 @@ class Api::V1::VehiclesController < ApplicationController
          if @vehicle.get_vin_by_plate == "NO MATCH"
           errors = {"errors" => "NO MATCH"}
             render json: errors
-            byebug
          end
       end
       if @vehicle.add_nhtsa_data == "NO MATCH"
          errors = {"errors" => "NO MATCH"}
          render json: errors
       else
+         @vehicle.add_image
+         @vehicle.add_maint_data
          render json: @vehicle, include: "*"
       end
    end 

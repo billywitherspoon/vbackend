@@ -33,6 +33,12 @@ class Vehicle < ApplicationRecord
       self.save
    end
 
+   def add_image 
+      image = CARMD.image(self.vin)
+      self.auto_image = image 
+      self.save 
+   end 
+
    def get_vin_by_plate
        vin = VehicleRegistration.get_vin(self.plate, self.plate_state)
        if vin && vin.class == String && vin.length > 8 && vin.length < 20
