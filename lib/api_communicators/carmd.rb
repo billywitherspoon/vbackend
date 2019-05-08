@@ -4,7 +4,6 @@ require_relative './apikeys.rb'
 
 class CARMD
 
-
    def self.maint(vin, mileage)
       JSON.parse(RestClient::Request.execute(
          :method => :get,
@@ -27,6 +26,7 @@ class CARMD
          return imageHash["data"]["image"]
       else
          return "no image"
+      end
    end
 
 end
