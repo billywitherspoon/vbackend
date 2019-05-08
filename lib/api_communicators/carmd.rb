@@ -22,7 +22,8 @@ class CARMD
                   "partner-token" => $car_md_token,
                   "authorization" => $car_md_key}
       ))
-      if imageHash["message"] == "ok"
+      byebug
+      if imageHash["message"]["message"] == "ok"
          return imageHash["data"]["image"]
       else
          return "no image"
