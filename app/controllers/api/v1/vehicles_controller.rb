@@ -15,19 +15,20 @@ class Api::V1::VehiclesController < ApplicationController
    def create 
       @vehicle = Vehicle.new(vehicle_params)
       unless @vehicle.vin
-         if @vehicle.get_vin_by_plate == "NO MATCH"
+         unless @vehicle.get_vin_by_plate
           errors = {"errors" => "NO MATCH"}
             render json: errors
+            return
          end
       end
-      if @vehicle.add_nhtsa_data == "NO MATCH"
+      unless @vehicle.add_nhtsa_data
          errors = {"errors" => "NO MATCH"}
          render json: errors
-      else
-         @vehicle.add_image
-         @vehicle.add_maint_data
-         render json: @vehicle, include: "*"
+         return 
       end
+      @vehicle.add_image
+      @vehicle.add_maint_data
+      render json: @vehicle, include: "*"
    end 
 
    def show 

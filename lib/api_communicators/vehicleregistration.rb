@@ -8,9 +8,12 @@ require 'active_support/core_ext/hash'
 class VehicleRegistration
 
    def self.get_vin(plate, state)
-      result = RestClient.get("http://www.vehicleregistrationapi.com/api/reg.asmx/CheckUSA?RegistrationNumber=#{plate}&State=#{state}&username=#{$vr_username}")
+      begin
+         result = RestClient.get("http://www.vehicleregistrationapi.com/api/reg.asmx/CheckUSA?RegistrationNumber=#{plate}&State=#{state}&username=#{$vr_username}")
 
-      JSON.parse(Hash.from_xml(result)["Vehicle"]["vehicleJson"])["VechileIdentificationNumber"].downcase
+         return JSON.parse(Hash.from_xml(result)["Vehicle"]["vehicleJson"])["VechileIdentificationNumber"].downcase
+      rescue 
+         return nil
+      end
    end
-
 end

@@ -17,7 +17,7 @@ class Vehicle < ApplicationRecord
       if self.make
          self.save
       else
-        return "NO MATCH"
+        return nil
       end
    end
 
@@ -39,6 +39,9 @@ class Vehicle < ApplicationRecord
 
    def add_image 
       image = CARMD.image(self.vin)
+      if image == ""
+         image = "http://clipart-library.com/img/2050778.png"
+      end
       self.auto_image = image 
       self.save 
    end 
@@ -48,7 +51,7 @@ class Vehicle < ApplicationRecord
        if vin && vin.class == String && vin.length > 8 && vin.length < 20
          self.vin = vin
        else  
-         return "NO MATCH"
+         return nil
        end 
    end
 end
