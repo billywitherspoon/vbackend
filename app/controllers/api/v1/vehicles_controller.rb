@@ -8,19 +8,18 @@ class Api::V1::VehiclesController < ApplicationController
       render json: @vehicles
    end 
 
-   # def new 
-   #    @vehicle = Vehicle.new 
-   # end 
-
    def create 
       @vehicle = Vehicle.new(vehicle_params)
+      #if a vehicle already has a vin, skips this unless block
       unless @vehicle.vin
+         #if getting the vin by plate is successful it skips this block
          unless @vehicle.get_vin_by_plate
           errors = {"errors" => "NO MATCH"}
             render json: errors
             return
          end
       end
+      #if adding the nhtsa data is successful, it skips this block
       unless @vehicle.add_nhtsa_data
          errors = {"errors" => "NO MATCH"}
          render json: errors
@@ -38,7 +37,7 @@ class Api::V1::VehiclesController < ApplicationController
    def update 
       @vehicle.mileage = vehicle_params[:mileage]
       @vehicle.add_maint_data
-      render json: @vehicle
+      render json: @vehicle, include: "*"
    end 
 
    # def edit 

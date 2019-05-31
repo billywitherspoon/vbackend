@@ -13,7 +13,8 @@ class Vehicle < ApplicationRecord
             self[d_snaked] = d["Value"]
          end
       end
-      #error codes from this API aren't great, so simply saying if a model is returned, it must have found a matching make
+      #error codes from this API aren't consistent
+      #this checks if there is a make returned for the vin, if so, it is a good vin
       if self.make
          self.save
       else
@@ -21,6 +22,7 @@ class Vehicle < ApplicationRecord
       end
    end
 
+   #calls the CARMD api to add the maintenance data
    def add_maint_data
       maint_data = CARMD.maint(self.vin, self.mileage)
       maint_data["data"].each do |d|
@@ -37,6 +39,7 @@ class Vehicle < ApplicationRecord
       self.save
    end
 
+   #uses the CARMD api to add a stock image of the vehicle
    def add_image 
       image = CARMD.image(self.vin)
       if image == ""
@@ -46,6 +49,7 @@ class Vehicle < ApplicationRecord
       self.save 
    end 
 
+   #uses the VehicleRegistration to pass a plate and return a vin
    def get_vin_by_plate
        vin = VehicleRegistration.get_vin(self.plate, self.plate_state)
        if vin && vin.class == String && vin.length > 8 && vin.length < 20

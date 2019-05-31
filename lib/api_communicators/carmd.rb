@@ -4,6 +4,7 @@ require_relative './apikeys.rb'
 
 class CARMD
 
+   #returns the maintenance based on the vehicles vin and mileage
    def self.maint(vin, mileage)
       JSON.parse(RestClient::Request.execute(
          :method => :get,
@@ -14,6 +15,7 @@ class CARMD
       ))
    end
 
+   #returns a stock image of the vehicle
    def self.image(vin)
       imageHash = JSON.parse(RestClient::Request.execute(
        :method => :get,

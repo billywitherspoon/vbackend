@@ -36,9 +36,6 @@ class Api::V1::LogsController < ApplicationController
          end
       end
    
-      # def edit 
-      # end 
-   
       private 
    
       def set_log
